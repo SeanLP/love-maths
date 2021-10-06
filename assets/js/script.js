@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", function() {
     for (let button of buttons) {
         button.addEventListener("click", function() {
             if (this.getAttribute("data-type") === "submit") {
-                alert("You clicked Submit!");
+                // alert("You clicked Submit!");
+                checkAnswer();
             } else {
                 let gameType = this.getAttribute("data-type");
                 // alert(`You clicked ${gameType}`);
@@ -38,7 +39,23 @@ function runGame(gameType) {
     }
 }
 
+/**
+ * Checks the answer against the first element in the
+ * returned calculateCorrectAnswer array
+ */
 function checkAnswer() {
+
+    let userAnswer = parseInt(document.getElementById("answer-box").value); // beacuse answer-box is an input element I used .value instead of .innerText
+    let calculatedAnswer = calculateCorrectAnswer();
+    let isCorrect = userAnswer === calculatedAnswer[0]; // compares the value stored of userAnswer is equal to the first index of the array of calculatedAnswer
+
+    if (isCorrect) {
+        alert("Hey, you got it right! :D");
+    } else {
+        alert(`Wrong answer...you answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}!`);
+    }
+
+    runGame(calculatedAnswer[1]);
 
 }
 
