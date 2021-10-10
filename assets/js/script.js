@@ -18,6 +18,12 @@ document.addEventListener("DOMContentLoaded", function() {
         })
     }
 
+    document.getElementById("answer-box").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+    })
+
     runGame("addition");
 })
 
@@ -27,6 +33,9 @@ document.addEventListener("DOMContentLoaded", function() {
  * and after the user's answer has been processed
  */
 function runGame(gameType) {
+
+    document.getElementById("answer-box").value = ""; // Emptys the answer area after each time the game is called
+    document.getElementById("answer-box").focus(); // Makes the cursor start in the answer box each time the game is called
 
     // Creates two random numbers between 1 and 24( added + 1 so that I don't get 0 as a number)
     let num1 = Math.floor(Math.random() * 25) + 1;
